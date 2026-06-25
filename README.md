@@ -1,6 +1,6 @@
 # retroOS
 
-A personal web-based operating system built from scratch with HTML, CSS, and JavaScript — no frameworks, no libraries. Built for Hack Club's [webOS Jam](https://jams.hackclub.com/batch/webOS).
+A personal web-based operating system built from scratch with HTML, CSS, and JavaScript — no frameworks, no libraries. Built for Hack Club's [webOS Mission](https://jams.hackclub.com/batch/webOS).
 
 ![retroOS screenshot](./screenshot.png)
 
