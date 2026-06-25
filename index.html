@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body style="background-color: #008080; margin: 0px; height: 100vh; background-image: url(./background.webp); background-size: cover; background-repeat: no-repeat;">
+
+    <div class="topbar">
+      <p id="welcomeopen" style="margin: 0px; font-weight: bold; cursor: pointer;">retroOS</p>
+      <p id="timeElement" style="margin: 0px;">00:00:00</p>
+    </div>
+
+    <div id="desktopApps" style="position: absolute; top: 64px; left: 16px; display: flex; flex-direction: column; gap: 16px;">
+      <div id="painticon" style="text-align: center; cursor: pointer; width: 64px;">
+        <img src="./painticon.png" style="width: 48px; height: 48px; image-rendering: pixelated;">
+        <p style="margin: 4px 0px 0px 0px; color: #ffffff; font-family: Tahoma, Arial, sans-serif; font-size: 12px; text-shadow: 1px 1px 2px #000000;">Paint</p>
+      </div>
+      <div id="terminalicon" style="text-align: center; cursor: pointer; width: 64px;">
+        <div style="width: 48px; height: 48px; background-color: #000000; border: 2px solid #ffffff; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #33ff33;">&gt;_</div>
+        <p style="margin: 4px 0px 0px 0px; color: #ffffff; font-family: Tahoma, Arial, sans-serif; font-size: 12px; text-shadow: 1px 1px 2px #000000;">Terminal</p>
+      </div>
+      <div id="weathericon" style="text-align: center; cursor: pointer; width: 64px;">
+        <div style="width: 48px; height: 48px; background-color: #e0f4ff; border: 2px solid #000000; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 24px;">⛅</div>
+        <p style="margin: 4px 0px 0px 0px; color: #ffffff; font-family: Tahoma, Arial, sans-serif; font-size: 12px; text-shadow: 1px 1px 2px #000000;">Weather</p>
+      </div>
+    </div>
+
+    <div id="welcome" class="window" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <div id="welcomeheader" class="windowheader">
+        retroOS
+        <div style="display: flex; gap: 4px;">
+          <div id="welcomeminimize" class="closebutton">_</div>
+          <div id="welcomeclose" class="closebutton">X</div>
+        </div>
+      </div>
+      <div style="padding: 16px;">
+        <h1 style="margin-top: 0px;">WELCOME TO retroOS</h1>
+        <p>SYSTEM BOOT COMPLETE.</p>
+      </div>
+    </div>
+
+    <div id="paint" class="window" style="top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; width: auto;">
+      <div id="paintheader" class="windowheader">
+        Paint
+        <div style="display: flex; gap: 4px;">
+          <div id="paintminimize" class="closebutton">_</div>
+          <div id="paintclose" class="closebutton">X</div>
+        </div>
+      </div>
+      <div style="display: flex; background-color: #c0c0c0; padding: 4px;">
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 4px; border-right: 2px solid #808080; margin-right: 4px;">
+          <div id="toolPencil" class="painttool selectedtool" style="font-size: 20px;">✏️</div>
+          <div id="toolEraser" class="painttool" style="font-size: 20px;">🧽</div>
+          <div id="toolFill" class="painttool" style="font-size: 20px;">🪣</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; gap: 4px; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 11px;">Size:</span>
+            <div id="size1" class="sizeoption selectedtool" data-size="1">●</div>
+            <div id="size2" class="sizeoption" data-size="3">●</div>
+            <div id="size3" class="sizeoption" data-size="6">●</div>
+            <div id="size4" class="sizeoption" data-size="12">●</div>
+            <button id="clearCanvas" style="margin-left: auto; font-family: Tahoma, Arial, sans-serif; cursor: pointer;">Clear</button>
+          </div>
+
+          <canvas id="paintCanvas" width="320" height="240" style="background-color: #ffffff; border: 2px inset #808080; cursor: crosshair; image-rendering: pixelated;"></canvas>
+
+          <div style="display: flex; gap: 2px; flex-wrap: wrap; margin-top: 4px; max-width: 320px;" id="palette"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="terminal" class="window" style="top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; width: 480px;">
+      <div id="terminalheader" class="windowheader">
+        Terminal
+        <div style="display: flex; gap: 4px;">
+          <div id="terminalminimize" class="closebutton">_</div>
+          <div id="terminalclose" class="closebutton">X</div>
+        </div>
+      </div>
+      <div style="background-color: #000000; padding: 8px; height: 320px; display: flex; flex-direction: column;">
+        <div id="terminalOutput" style="flex: 1; overflow-y: auto; color: #33ff33; font-family: Courier, monospace; font-size: 13px; white-space: pre-wrap;"></div>
+        <div style="display: flex; color: #33ff33; font-family: Courier, monospace; font-size: 13px;">
+          <span>&gt;&nbsp;</span>
+          <input id="terminalInput" type="text" autocomplete="off" style="flex: 1; background: transparent; border: none; outline: none; color: #33ff33; font-family: Courier, monospace; font-size: 13px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="weather" class="window" style="top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; width: 300px;">
+      <div id="weatherheader" class="windowheader">
+        Weather
+        <div style="display: flex; gap: 4px;">
+          <div id="weatherminimize" class="closebutton">_</div>
+          <div id="weatherclose" class="closebutton">X</div>
+        </div>
+      </div>
+      <div style="padding: 12px; background-color: #e0f4ff;">
+        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+          <input id="cityInput" type="text" placeholder="Enter a city..." style="flex: 1; font-family: Tahoma, Arial, sans-serif; font-size: 12px; padding: 4px; border: 2px inset #808080;">
+          <button id="citySearch" style="font-family: Tahoma, Arial, sans-serif; cursor: pointer;">Go</button>
+        </div>
+        <div id="weatherResult" style="font-family: Tahoma, Arial, sans-serif; font-size: 13px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #000000;">
+          <p style="color: #444444;">Type a city and hit Go.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="taskbar" style="position: fixed; bottom: 0px; left: 0px; width: 100%; height: 32px; background-color: #c0c0c0; border-top: 2px solid #ffffff; display: flex; align-items: center; gap: 4px; padding: 0px 4px; box-sizing: border-box; font-family: Tahoma, Arial, sans-serif; font-size: 12px; z-index: 1000;"></div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
